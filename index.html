@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAKERU NEYAGAWA - 掛ける×架ける×駆ける＝無限の可能性</title>
+    <meta name="description" content="大阪府寝屋川市にある雑居ビル。異業種が集まり新たな価値を創造する場として、Cafe 6D、レンタルスペース、プログラミングスクールが入居。">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    
+    <style>
+        /* 配色テーマ */
+        :root {
+            /* ダイナミック・グラデーション */
+            --theme1-primary: #4A148C;
+            --theme1-secondary: #FF6F00;
+            --theme1-accent: #00ACC1;
+            
+            /* モダン・トライアド */
+            --theme2-primary: #0066FF;
+            --theme2-secondary: #76FF03;
+            --theme2-accent: #E91E63;
+            
+            /* 洗練されたビジネスカラー */
+            --theme3-primary: #1A237E;
+            --theme3-secondary: #FFB300;
+            --theme3-accent: #00BFA5;
+            
+            /* 現在のテーマ */
+            --primary: var(--theme1-primary);
+            --secondary: var(--theme1-secondary);
+            --accent: var(--theme1-accent);
+            
+            /* 共通カラー */
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+        
+        /* リセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        /* カスタムカーソル */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        /* パーティクル背景 */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        /* メインコンテンツ */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('IMG_2540.jpg') center/cover;
+            opacity: 0.3;
+            filter: blur(2px) brightness(0.7);
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(10, 10, 10, 0.7) 0%, 
+                rgba(10, 10, 10, 0.5) 50%, 
+                rgba(10, 10, 10, 0.8) 100%);
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* グリッチエフェクト */
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: 
+                    0.05em 0 0 var(--secondary),
+                    -0.05em -0.025em 0 var(--accent),
+                    0.025em 0.05em 0 var(--primary);
+            }
+            15% {
+                text-shadow: 
+                    0.05em 0 0 var(--secondary),
+                    -0.05em -0.025em 0 var(--accent),
+                    0.025em 0.05em 0 var(--primary);
+            }
+            16% {
+                text-shadow: 
+                    -0.05em -0.025em 0 var(--secondary),
+                    0.025em 0.025em 0 var(--accent),
+                    -0.05em -0.05em 0 var(--primary);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-tagline {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            animation: gradient-shift 5s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        /* THREE VALUES セクション */
+        .values {
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--secondary);
+        }
+        
+        .value-card::before {
+            content: attr(data-kanji);
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            font-family: 'Noto Serif JP', serif;
+            opacity: 0.1;
+            z-index: 0;
+            color: var(--secondary);
+            font-weight: 900;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover::before {
+            opacity: 0.2;
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .value-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .value-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        /* EVENTS セクション */
+        .events {
+            padding: 5rem 2rem;
+            background: var(--bg-dark);
+            position: relative;
+            min-height: auto;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .event-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            opacity: 1 !important; /* 確実に表示されるように */
+            visibility: visible !important;
+        }
+        
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+        
+        .event-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        .event-date {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: var(--text-primary);
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .event-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .event-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .event-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+        
+        /* TENANTS セクション */
+        .tenants {
+            padding: 5rem 2rem;
+        }
+        
+        .floor-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .floor-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floor-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .floor-btn:hover::before,
+        .floor-btn.active::before {
+            left: 0;
+        }
+        
+        .floor-btn.active {
+            color: var(--text-primary);
+        }
+        
+        .tenant-info {
+            display: none;
+            opacity: 0;
+        }
+        
+        .tenant-info.active {
+            display: block !important;
+            opacity: 1 !important;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tenant-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .tenant-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tenant-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tenant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        /* ロゴ画像用の特別なスタイル */
+        [data-floor="3"] .tenant-image {
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        [data-floor="3"] .tenant-image img {
+            object-fit: contain;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .tenant-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .event-card {
+                min-height: 320px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tenant-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .tenant-image {
+                height: 300px;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .event-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        .tenant-name {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tenant-type {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+        
+        .tenant-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+        
+        .detail-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .detail-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .detail-card h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .detail-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* フッター */
+        footer {
+            background: var(--bg-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* スクロールインジケーター */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+        
+        /* テーマ切り替えボタン */
+        .theme-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .theme-btn.active {
+            border-color: #fff;
+        }
+        
+        .theme-btn[data-theme="1"] {
+            background: linear-gradient(45deg, #4A148C, #FF6F00, #00ACC1);
+        }
+        
+        .theme-btn[data-theme="2"] {
+            background: linear-gradient(45deg, #0066FF, #76FF03, #E91E63);
+        }
+        
+        .theme-btn[data-theme="3"] {
+            background: linear-gradient(45deg, #1A237E, #FFB300, #00BFA5);
+        }
+        
+        /* アニメーション用の追加スタイル */
+        .split-text span {
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .split-text span > span {
+            display: inline-block;
+        }
+        
+        .parallax-element {
+            will-change: transform;
+        }
+        
+        .float-element {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .morph-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floor-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floor-btn {
+                width: 200px;
+            }
+            
+            .cursor,
+            .cursor-dot {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- カスタムカーソル -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- パーティクル背景 -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- テーマ切り替え -->
+    <div class="theme-switcher">
+        <div class="theme-btn active" data-theme="1" title="ダイナミック・グラデーション"></div>
+        <div class="theme-btn" data-theme="2" title="モダン・トライアド"></div>
+        <div class="theme-btn" data-theme="3" title="洗練されたビジネスカラー"></div>
+    </div>
+    
+    <!-- メインコンテンツ -->
+    <div class="content">
+        <!-- ヒーローセクション -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="morph-shape" id="morph1"></div>
+            <div class="morph-shape" id="morph2"></div>
+            <div class="hero-content">
+                <h1 class="hero-title glitch split-text">KAKERU NEYAGAWA</h1>
+                <p class="hero-subtitle">大阪府寝屋川市にできた新しい拠点</p>
+                <p class="hero-tagline">掛ける×架ける×駆ける＝無限の可能性</p>
+            </div>
+            <div class="scroll-indicator">
+                <svg width="30" height="50" viewBox="0 0 30 50">
+                    <rect x="10" y="10" width="10" height="20" rx="5" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="15" cy="20" r="3" fill="white">
+                        <animate attributeName="cy" from="15" to="25" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- THREE VALUES セクション -->
+        <section class="values">
+            <h2 class="section-title">THREE VALUES</h2>
+            <div class="values-grid">
+                <div class="value-card" data-kanji="掛">
+                    <div class="value-content">
+                        <h3 class="value-title">掛ける</h3>
+                        <p class="value-description">
+                            異なる価値を掛け合わせることで、新たなイノベーションを生み出します。
+                            異業種の協創により、1+1が3にも10にもなる相乗効果を実現。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="value-card" data-kanji="架">
+                    <div class="value-content">
+                        <h3 class="value-title">架ける</h3>
+                        <p class="value-description">
+                            人と人、ビジネスとビジネスの架け橋となり、
+                            新たなコミュニティと価値創造の場を提供します。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="value-card" data-kanji="駆">
+                    <div class="value-content">
+                        <h3 class="value-title">駆ける</h3>
+                        <p class="value-description">
+                            時代の最先端を駆け抜け、常に進化し続ける場所。
+                            スピード感を持って、未来への挑戦を支援します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- EVENTS セクション -->
+        <section class="events">
+            <h2 class="section-title">UPCOMING EVENTS</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <span class="event-date">2024年1月20日（土）</span>
+                    <h3 class="event-title">プログラミング体験ワークショップ</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>3F SUNABACO NEYAGAWA</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>14:00 - 17:00</span>
+                    </div>
+                    <p class="event-description">
+                        初心者向けのプログラミング体験会。HTMLとCSSを使って、自分だけのWebサイトを作ってみませんか？経験豊富な講師が丁寧にサポートします。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">初心者歓迎</span>
+                        <span class="event-tag">無料</span>
+                        <span class="event-tag">要予約</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-date">2024年1月27日（土）</span>
+                    <h3 class="event-title">地産地消マルシェ</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>1F Cafe 6D</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>10:00 - 16:00</span>
+                    </div>
+                    <p class="event-description">
+                        地元農家さんの新鮮な野菜や果物が大集合！生産者と直接お話しながら、こだわりの農産物をお買い求めいただけます。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">ファミリー向け</span>
+                        <span class="event-tag">地産地消</span>
+                        <span class="event-tag">入場無料</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-date">2024年2月3日（土）</span>
+                    <h3 class="event-title">起業家交流会</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>2F レンタルスペース KAKERU</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>18:00 - 21:00</span>
+                    </div>
+                    <p class="event-description">
+                        寝屋川市で活躍する起業家・経営者が集まる交流会。新しいビジネスチャンスを見つけたい方、人脈を広げたい方におすすめです。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">ネットワーキング</span>
+                        <span class="event-tag">ビジネス</span>
+                        <span class="event-tag">軽食付き</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-date">2024年2月10日（土）</span>
+                    <h3 class="event-title">親子でプログラミング教室</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>3F SUNABACO NEYAGAWA</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>10:00 - 12:00</span>
+                    </div>
+                    <p class="event-description">
+                        小学生とその保護者を対象にしたプログラミング教室。Scratchを使って、ゲーム作りに挑戦！親子で一緒に楽しく学べます。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">親子参加</span>
+                        <span class="event-tag">小学生対象</span>
+                        <span class="event-tag">定員15組</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-date">2024年2月17日（土）</span>
+                    <h3 class="event-title">農家さんの料理教室</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>1F Cafe 6D</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>15:00 - 17:00</span>
+                    </div>
+                    <p class="event-description">
+                        地元農家さんが講師となり、採れたて野菜を使った料理を伝授。野菜の選び方から調理のコツまで、プロから直接学べる貴重な機会です。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">料理教室</span>
+                        <span class="event-tag">材料費込み</span>
+                        <span class="event-tag">試食あり</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-date">2024年2月24日（土）</span>
+                    <h3 class="event-title">AIビジネス活用セミナー</h3>
+                    <div class="event-location">
+                        <span>📍</span>
+                        <span>2F レンタルスペース KAKERU</span>
+                    </div>
+                    <div class="event-time">
+                        <span>🕐</span>
+                        <span>13:00 - 16:00</span>
+                    </div>
+                    <p class="event-description">
+                        ChatGPTなどのAIツールをビジネスに活用する方法を学ぶセミナー。実践的なワークショップで、すぐに使えるスキルを身につけます。
+                    </p>
+                    <div class="event-tags">
+                        <span class="event-tag">ビジネス</span>
+                        <span class="event-tag">AI活用</span>
+                        <span class="event-tag">実践型</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TENANTS セクション -->
+        <section class="tenants">
+            <h2 class="section-title">TENANTS</h2>
+            
+            <div class="floor-selector">
+                <button class="floor-btn active" data-floor="1">1F</button>
+                <button class="floor-btn" data-floor="2">2F</button>
+                <button class="floor-btn" data-floor="3">3F</button>
+            </div>
+            
+            <!-- 1F -->
+            <div class="tenant-info active" data-floor="1">
+                <div class="tenant-header">
+                    <h3 class="tenant-name">Cafe 6D</h3>
+                    <p class="tenant-type">6次産業化サポートカフェ</p>
+                </div>
+                <div class="tenant-content-wrapper">
+                    <div class="tenant-image">
+                        <img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Cafe 6D - 6次産業化サポートカフェ">
+                    </div>
+                    <div class="tenant-details">
+                        <div class="detail-card">
+                            <h4>🌾 特徴</h4>
+                            <p>農家と消費者を繋ぐ、地産地消を推進するカフェ。新鮮な食材を使用した健康的なメニューを提供。農家の想いを直接お客様に届けます。</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>⏰ 営業時間</h4>
+                            <p>8:00-20:00（L.O. 19:30）</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>📅 定休日</h4>
+                            <p>月曜日</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>🍴 おすすめメニュー</h4>
+                            <p>・季節の野菜プレート<br>・農家直送スムージー<br>・地元食材のスイーツ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2F -->
+            <div class="tenant-info" data-floor="2">
+                <div class="tenant-header">
+                    <h3 class="tenant-name">レンタルスペース KAKERU</h3>
+                    <p class="tenant-type">多目的スペース</p>
+                </div>
+                <div class="tenant-content-wrapper">
+                    <div class="tenant-image">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="レンタルスペース KAKERU - 多目的スペース">
+                    </div>
+                    <div class="tenant-details">
+                        <div class="detail-card">
+                            <h4>🏢 用途</h4>
+                            <p>セミナー、ワークショップ、展示会、撮影など多目的に利用可能。最新の設備と柔軟なレイアウトで、あらゆるイベントをサポートします。</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>👥 収容人数</h4>
+                            <p>最大100名</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>⏰ 利用時間</h4>
+                            <p>9:00-22:00（要予約）</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>🎯 設備・サービス</h4>
+                            <p>・プロジェクター＆スクリーン<br>・音響設備<br>・高速Wi-Fi<br>・ケータリング対応</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3F -->
+            <div class="tenant-info" data-floor="3">
+                <div class="tenant-header">
+                    <h3 class="tenant-name">SUNABACO NEYAGAWA</h3>
+                    <p class="tenant-type">プログラミングスクール</p>
+                </div>
+                <div class="tenant-content-wrapper">
+                    <div class="tenant-image">
+                        <img src="Sunabacologo.png" alt="SUNABACO NEYAGAWA - プログラミングスクール">
+                    </div>
+                    <div class="tenant-details">
+                        <div class="detail-card">
+                            <h4>💻 特徴</h4>
+                            <p>実践的なプログラミング教育と就職支援を提供。初心者から上級者まで対応。最新の技術トレンドに対応したカリキュラムで、即戦力となるエンジニアを育成します。</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>⏰ 営業時間</h4>
+                            <p>平日 10:00-21:00<br>土日 10:00-18:00</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>📚 コース</h4>
+                            <p>Web開発、アプリ開発、AI・機械学習など</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>🎯 特別プログラム</h4>
+                            <p>・初心者向け基礎コース<br>・実践的プロジェクト開発<br>・キャリアサポート</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- フッター -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 KAKERU NEYAGAWA. All rights reserved.</p>
+                <p>〒572-0084 大阪府寝屋川市香里南之町33-22</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // カスタムカーソル
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            cursorDot.style.left = e.clientX - 2 + 'px';
+            cursorDot.style.top = e.clientY - 2 + 'px';
+        });
+        
+        // ホバー効果
+        const hoverElements = document.querySelectorAll('a, button, .value-card');
+        hoverElements.forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+            elem.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+        
+        // パーティクルシステム
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 100;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // パーティクル生成
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // 線を描画
+            particles.forEach((particle, i) => {
+                particles.slice(i + 1).forEach(particle2 => {
+                    const distance = Math.sqrt(
+                        Math.pow(particle.x - particle2.x, 2) +
+                        Math.pow(particle.y - particle2.y, 2)
+                    );
+                    
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(particle2.x, particle2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+        
+        // リサイズ対応
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // フロア切り替えはGSAPセクションで処理
+        
+        // テーマ切り替え
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const root = document.documentElement;
+        
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme');
+                
+                themeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                switch(theme) {
+                    case '1':
+                        root.style.setProperty('--primary', 'var(--theme1-primary)');
+                        root.style.setProperty('--secondary', 'var(--theme1-secondary)');
+                        root.style.setProperty('--accent', 'var(--theme1-accent)');
+                        break;
+                    case '2':
+                        root.style.setProperty('--primary', 'var(--theme2-primary)');
+                        root.style.setProperty('--secondary', 'var(--theme2-secondary)');
+                        root.style.setProperty('--accent', 'var(--theme2-accent)');
+                        break;
+                    case '3':
+                        root.style.setProperty('--primary', 'var(--theme3-primary)');
+                        root.style.setProperty('--secondary', 'var(--theme3-secondary)');
+                        root.style.setProperty('--accent', 'var(--theme3-accent)');
+                        break;
+                }
+            });
+        });
+        
+        // GSAP アニメーション
+        gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase, ScrollToPlugin);
+        
+        // カスタムイージング
+        CustomEase.create("bounce", "M0,0 C0.126,0.382 0.282,1.155 0.44,1.001 0.632,0.816 0.818,1.001 1,1");
+        
+        // テキスト分割関数
+        function splitText(element) {
+            const text = element.textContent;
+            element.innerHTML = text.split('').map((char, i) => 
+                `<span style="display: inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+            ).join('');
+            return element.querySelectorAll('span');
+        }
+        
+        // ヒーロータイトルアニメーション
+        const heroTitle = document.querySelector('.hero-title');
+        const chars = splitText(heroTitle);
+        
+        // 文字ごとのアニメーション
+        gsap.timeline()
+            .set(chars, { opacity: 0, y: 100, rotateX: -90 })
+            .to(chars, {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 1,
+                stagger: {
+                    each: 0.05,
+                    from: "random"
+                },
+                ease: "back.out(2)"
+            });
+        
+        // サブタイトルのタイピングアニメーション
+        const subtitle = document.querySelector('.hero-subtitle');
+        const subtitleText = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        gsap.to(subtitle, {
+            duration: 2,
+            delay: 1,
+            text: subtitleText,
+            ease: "none"
+        });
+        
+        // タグラインのフェードインとパルス
+        const tagline = document.querySelector('.hero-tagline');
+        gsap.timeline()
+            .from(tagline, {
+                duration: 1,
+                delay: 2,
+                opacity: 0,
+                scale: 0.5,
+                ease: "bounce"
+            })
+            .to(tagline, {
+                scale: 1.05,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+        
+        // 浮遊する形状のアニメーション
+        gsap.to("#morph1", {
+            x: "random(-200, 200)",
+            y: "random(-200, 200)",
+            duration: "random(10, 15)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+        
+        gsap.to("#morph2", {
+            x: "random(-300, 300)",
+            y: "random(-300, 300)",
+            duration: "random(15, 20)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+        
+        // パララックススクロール効果
+        gsap.to('.hero-bg', {
+            yPercent: 50,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+        
+        // セクションタイトルのアンダーラインアニメーション
+        document.querySelectorAll('.section-title').forEach(title => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .from(title, {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+        });
+        
+        // バリューカードの3Dアニメーション
+        const valueCards = document.querySelectorAll('.value-card');
+        
+        // 初期状態を設定
+        valueCards.forEach(card => {
+            gsap.set(card, { opacity: 1, scale: 1, rotateY: 0 });
+            gsap.set(card.querySelector('.value-content'), { opacity: 1, y: 0 });
+        });
+        
+        valueCards.forEach((card, i) => {
+            // スクロールトリガーアニメーション
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    end: "bottom 15%",
+                    toggleActions: "play none none none",
+                    markers: false // デバッグ用マーカー
+                }
+            });
+            
+            tl.from(card, {
+                duration: 1.5,
+                rotateY: 90,
+                opacity: 0,
+                scale: 0.5,
+                delay: i * 0.2,
+                ease: "back.out(1.7)",
+                transformPerspective: 1000
+            })
+            .from(card.querySelector('.value-content'), {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                ease: "power2.out"
+            }, "-=0.8");
+            
+            // ホバー時のアニメーション
+            let hoverTl = gsap.timeline({ paused: true });
+            hoverTl.to(card, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out"
+            })
+            ;
+            
+            card.addEventListener('mouseenter', () => hoverTl.play());
+            card.addEventListener('mouseleave', () => hoverTl.reverse());
+            
+            // マウス追従3D効果
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    transformPerspective: 1000,
+                    transformOrigin: "center center"
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // イベントカードのアニメーション
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        console.log('Found event cards:', eventCards.length); // デバッグ用
+        
+        // 初期状態を設定（すべてのカードを表示）
+        eventCards.forEach(card => {
+            gsap.set(card, { opacity: 1, y: 0, scale: 1 });
+            gsap.set(card.querySelector('.event-date'), { opacity: 1, x: 0 });
+            gsap.set(card.querySelectorAll('.event-location, .event-time, .event-description'), { opacity: 1, y: 0 });
+            gsap.set(card.querySelectorAll('.event-tag'), { opacity: 1, scale: 1 });
+        });
+        
+        eventCards.forEach((card, i) => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%", // より早めにトリガー
+                    end: "bottom 10%",
+                    toggleActions: "play none none none",
+                    once: true // 一度だけ実行
+                }
+            })
+            .from(card, {
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                scale: 0.9,
+                delay: i * 0.15,
+                ease: "power3.out"
+            })
+            .from(card.querySelector('.event-date'), {
+                duration: 0.5,
+                x: -20,
+                opacity: 0,
+                ease: "power2.out"
+            }, "-=0.5")
+            .from(card.querySelectorAll('.event-location, .event-time, .event-description'), {
+                duration: 0.6,
+                y: 20,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "power2.out"
+            }, "-=0.3")
+            .from(card.querySelectorAll('.event-tag'), {
+                duration: 0.4,
+                scale: 0,
+                opacity: 0,
+                stagger: 0.05,
+                ease: "back.out(1.7)"
+            }, "-=0.2");
+        });
+        
+        // テナント情報の切り替えアニメーション
+        const floorBtns = document.querySelectorAll('.floor-btn');
+        const tenantInfos = document.querySelectorAll('.tenant-info');
+        
+        // 初期状態を設定（1Fを表示）
+        tenantInfos.forEach(info => {
+            if (info.getAttribute('data-floor') === '1') {
+                info.style.display = 'block';
+                info.style.opacity = '1';
+                console.log('Initial show tenant 1F');
+            } else {
+                info.style.display = 'none';
+                info.style.opacity = '0';
+                console.log('Initial hide tenant:', info.getAttribute('data-floor'));
+            }
+        });
+        
+        floorBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const floor = btn.getAttribute('data-floor');
+                console.log('Floor button clicked:', floor);
+                
+                // ボタンのアニメーション
+                floorBtns.forEach(b => {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+                
+                // すべてのテナント情報を一旦隠す
+                tenantInfos.forEach(info => {
+                    info.style.display = 'none';
+                    info.classList.remove('active');
+                });
+                
+                // 選択されたフロアのテナント情報を表示
+                tenantInfos.forEach(info => {
+                    const infoFloor = info.getAttribute('data-floor');
+                    
+                    if (infoFloor === floor) {
+                        console.log('Showing tenant:', infoFloor);
+                        info.style.display = 'block';
+                        info.classList.add('active');
+                        
+                        // シンプルなフェードインアニメーション
+                        gsap.fromTo(info,
+                            {
+                                opacity: 0,
+                                y: 20
+                            },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.out"
+                            }
+                        );
+                    }
+                });
+            });
+        });
+        
+        // スクロールインジケーターのバウンスアニメーション
+        gsap.to('.scroll-indicator', {
+            y: 20,
+            duration: 1,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+        
+        // マウスカーソルのトレイル効果
+        const cursorTrails = [];
+        for (let i = 0; i < 5; i++) {
+            const trail = document.createElement('div');
+            trail.style.cssText = `
+                position: fixed;
+                width: ${20 - i * 3}px;
+                height: ${20 - i * 3}px;
+                border-radius: 50%;
+                background: var(--secondary);
+                pointer-events: none;
+                z-index: ${9998 - i};
+                opacity: ${0.5 - i * 0.1};
+            `;
+            document.body.appendChild(trail);
+            cursorTrails.push(trail);
+        }
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorTrails.forEach((trail, index) => {
+                gsap.to(trail, {
+                    x: e.clientX - trail.offsetWidth / 2,
+                    y: e.clientY - trail.offsetHeight / 2,
+                    duration: 0.1 + index * 0.05,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // パーティクルのインタラクティブ効果
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // パーティクルをマウスに反応させる
+        particles.forEach((particle, i) => {
+            const originalX = particle.x;
+            const originalY = particle.y;
+            
+            setInterval(() => {
+                const dx = mouseX - particle.x;
+                const dy = mouseY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const force = (100 - distance) / 100;
+                    particle.speedX += (dx / distance) * force * 0.5;
+                    particle.speedY += (dy / distance) * force * 0.5;
+                }
+            }, 1000 / 60);
+        });
+        
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: target,
+                        ease: "power3.inOut"
+                    });
+                }
+            });
+        });
+        
+        // ScrollTriggerの更新
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 100);
+        
+        // ウィンドウリサイズ時の更新
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
+    </script>
+</body>
+</html>

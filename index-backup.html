@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Tanim Ahmed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text" data-text="TANIM">TANIM</span>
+            </div>
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link glitch-text" data-text="HOME">HOME</a></li>
+                <li><a href="#about" class="nav-link glitch-text" data-text="ABOUT">ABOUT</a></li>
+                <li><a href="#projects" class="nav-link glitch-text" data-text="PROJECTS">PROJECTS</a></li>
+                <li><a href="#skills" class="nav-link glitch-text" data-text="SKILLS">SKILLS</a></li>
+                <li><a href="#contact" class="nav-link glitch-text" data-text="CONTACT">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="matrix-rain"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="TANIM">TANIM</span>
+                    <span class="glitch" data-text="AHMED">AHMED</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="typing-text">FULL STACK DEVELOPER</span>
+                    <span class="cursor-blink">_</span>
+                </div>
+                <p class="hero-description">Building the future, one line of code at a time</p>
+                <div class="hero-formula">
+                    <span class="formula-item">CODE</span>
+                    <span class="operator">+</span>
+                    <span class="formula-item">DESIGN</span>
+                    <span class="operator">+</span>
+                    <span class="formula-item">INNOVATION</span>
+                    <span class="operator">=</span>
+                    <span class="formula-item infinity">∞</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn-text">VIEW PROJECTS</span>
+                        <span class="btn-hover-text">EXPLORE</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="btn-text">GET IN TOUCH</span>
+                        <span class="btn-hover-text">CONNECT</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-particles" id="particleContainer"></div>
+    </section>
+
+    <section id="about" class="about cyber-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="ABOUT ME">ABOUT ME</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-card">
+                        <p class="lead">I'm a passionate full-stack developer with expertise in creating modern, scalable web applications. My journey in tech started with curiosity and has evolved into a career focused on building solutions that make a difference.</p>
+                        <p>I specialize in cutting-edge technologies, working with frameworks like React, Node.js, and cloud services to deliver high-performance applications. When I'm not coding, you can find me exploring new technologies, contributing to open source, or sharing knowledge with the developer community.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" data-value="5">0</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-value="50">0</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-value="30">0</div>
+                                <div class="stat-label">Happy Clients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control red"></span>
+                                <span class="control yellow"></span>
+                                <span class="control green"></span>
+                            </div>
+                            <span class="window-title">developer.js</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+  <span class="property">name</span>: <span class="string">'Tanim Ahmed'</span>,
+  <span class="property">role</span>: <span class="string">'Full Stack Developer'</span>,
+  <span class="property">skills</span>: [<span class="string">'JavaScript'</span>, <span class="string">'React'</span>, <span class="string">'Node.js'</span>],
+  <span class="property">passion</span>: <span class="string">'Building amazing experiences'</span>,
+  <span class="property">status</span>: <span class="string">'Always learning'</span>
+};</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects cyber-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="PROJECTS">PROJECTS</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <div class="project-front">
+                            <div class="project-image">
+                                <div class="project-number">01</div>
+                                <div class="project-icon">🚀</div>
+                            </div>
+                            <div class="project-content">
+                                <h3>E-Commerce Platform</h3>
+                                <p>A full-stack e-commerce solution with real-time inventory management and secure payment processing.</p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-back">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="link-text">VIEW LIVE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span class="link-text">SOURCE CODE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <div class="project-front">
+                            <div class="project-image">
+                                <div class="project-number">02</div>
+                                <div class="project-icon">⚡</div>
+                            </div>
+                            <div class="project-content">
+                                <h3>Task Management App</h3>
+                                <p>A collaborative task management tool with real-time updates and team collaboration features.</p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Vue.js</span>
+                                    <span class="tech-tag">Express</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-back">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="link-text">VIEW LIVE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span class="link-text">SOURCE CODE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-tilt>
+                    <div class="project-inner">
+                        <div class="project-front">
+                            <div class="project-image">
+                                <div class="project-number">03</div>
+                                <div class="project-icon">🌐</div>
+                            </div>
+                            <div class="project-content">
+                                <h3>Weather Dashboard</h3>
+                                <p>A responsive weather application with location-based forecasts and interactive data visualization.</p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Chart.js</span>
+                                    <span class="tech-tag">API</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-back">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="link-text">VIEW LIVE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span class="link-text">SOURCE CODE</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills cyber-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="SKILLS">SKILLS</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">⚡</span>
+                        Frontend
+                    </h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">HTML5</span>
+                                <div class="skill-level" data-level="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">CSS3/Sass</span>
+                                <div class="skill-level" data-level="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">React</span>
+                                <div class="skill-level" data-level="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Vue.js</span>
+                                <div class="skill-level" data-level="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">TypeScript</span>
+                                <div class="skill-level" data-level="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🔧</span>
+                        Backend
+                    </h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-level" data-level="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Express</span>
+                                <div class="skill-level" data-level="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Django</span>
+                                <div class="skill-level" data-level="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">RESTful APIs</span>
+                                <div class="skill-level" data-level="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">GraphQL</span>
+                                <div class="skill-level" data-level="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">💾</span>
+                        Database & Tools
+                    </h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">MongoDB</span>
+                                <div class="skill-level" data-level="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">PostgreSQL</span>
+                                <div class="skill-level" data-level="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Git</span>
+                                <div class="skill-level" data-level="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-level" data-level="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">AWS</span>
+                                <div class="skill-level" data-level="72"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-inner">
+                                <span class="skill-name">CI/CD</span>
+                                <div class="skill-level" data-level="77"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact cyber-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="CONTACT">CONTACT</h2>
+            <p class="contact-subtitle">Ready to build something amazing together?</p>
+            <div class="contact-content">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" required>
+                            <label for="name">YOUR NAME</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" required>
+                            <label for="email">YOUR EMAIL</label>
+                            <span class="form-line"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" id="subject" required>
+                        <label for="subject">SUBJECT</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" id="message" rows="5" required></textarea>
+                        <label for="message">YOUR MESSAGE</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <button type="submit" class="btn btn-submit">
+                        <span class="btn-text">SEND MESSAGE</span>
+                        <span class="btn-hover-text">TRANSMIT</span>
+                    </button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>tanim.ahmed@example.com</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h3>Location</h3>
+                        <p>Your City, Country</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🔗</div>
+                        <h3>Social</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="GitHub">
+                                <span class="social-icon">GH</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <span class="social-icon">LI</span>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <span class="social-icon">TW</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Tanim Ahmed. All rights reserved.</p>
+            <p class="footer-tagline">Built with <span class="heart">❤️</span> and lots of <span class="coffee">☕</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "kakeru-gatsby",
+  "version": "1.0.0",
+  "description": "KAKERU NEYAGAWA - Gatsby.js website",
+  "main": "index.js",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
+    "gatsby": "^5.14.5",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-plugin-styled-components": "^6.14.0",
+    "gatsby-remark-images": "^7.14.0",
+    "gatsby-source-filesystem": "^5.14.0",
+    "gatsby-transformer-remark": "^6.14.0",
+    "gsap": "^3.13.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^6.1.19"
+  }
+}
