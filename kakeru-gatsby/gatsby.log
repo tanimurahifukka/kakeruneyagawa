@@ -279,3 +279,40 @@ no-unused-vars
 
 [2K[1A[2K[Gsuccess Re-building development bundle - 0.139s
 
+[2K[1A[2K[Gsuccess onPreExtractQueries - 0.008s
+
+[2K[1A[2K[Gsuccess extract queries from components - 0.054s
+
+[2K[1A[2K[Gsuccess write out requires - 0.003s
+
+[2K[1A[2K[Gwarn /home/tanim/port2/kakeru-gatsby/src/components/CustomCursor.js
+  35:7  warning  'CursorTrail' is assigned a value but never used
+no-unused-vars
+
+/home/tanim/port2/kakeru-gatsby/src/components/Footer.js
+  92:9  warning  'mapUrl' is assigned a value but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+
+[2K[1A[2K[Gsuccess Re-building development bundle - 0.620s
+
+[2K[1A[2K[Gsuccess onPreExtractQueries - 0.001s
+
+[2K[1A[2K[Gsuccess extract queries from components - 0.018s
+
+[2K[1A[2K[Gsuccess write out requires - 0.001s
+
+[2K[1A[2K[Gwarn /home/tanim/port2/kakeru-gatsby/src/components/CustomCursor.js
+  35:7  warning  'CursorTrail' is assigned a value but never used
+no-unused-vars
+
+/home/tanim/port2/kakeru-gatsby/src/components/Footer.js
+  92:9  warning  'mapUrl' is assigned a value but never used  no-unused-vars
+
+/home/tanim/port2/kakeru-gatsby/src/pages/index.js
+  22:13  warning  'gsap' is assigned a value but never used  no-unused-vars
+
+✖ 3 problems (0 errors, 3 warnings)
+
+[2K[1A[2K[Gsuccess Re-building development bundle - 0.430s
+

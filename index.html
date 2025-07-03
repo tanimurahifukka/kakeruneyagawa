@@ -21,25 +21,10 @@
     <style>
         /* 配色テーマ */
         :root {
-            /* ダイナミック・グラデーション */
-            --theme1-primary: #4A148C;
-            --theme1-secondary: #FF6F00;
-            --theme1-accent: #00ACC1;
-            
             /* モダン・トライアド */
-            --theme2-primary: #0066FF;
-            --theme2-secondary: #76FF03;
-            --theme2-accent: #E91E63;
-            
-            /* 洗練されたビジネスカラー */
-            --theme3-primary: #1A237E;
-            --theme3-secondary: #FFB300;
-            --theme3-accent: #00BFA5;
-            
-            /* 現在のテーマ */
-            --primary: var(--theme1-primary);
-            --secondary: var(--theme1-secondary);
-            --accent: var(--theme1-accent);
+            --primary: #0066FF;
+            --secondary: #76FF03;
+            --accent: #E91E63;
             
             /* 共通カラー */
             --bg-dark: #0a0a0a;
@@ -317,16 +302,41 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 0;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
-            min-height: 350px;
+            min-height: 450px;
             display: flex;
             flex-direction: column;
             opacity: 1 !important; /* 確実に表示されるように */
             visibility: visible !important;
+        }
+        
+        .event-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .event-card::before {
@@ -626,44 +636,6 @@
             50% { transform: translateX(-50%) translateY(-20px); }
         }
         
-        /* テーマ切り替えボタン */
-        .theme-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 100;
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .theme-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-btn:hover {
-            transform: scale(1.2);
-        }
-        
-        .theme-btn.active {
-            border-color: #fff;
-        }
-        
-        .theme-btn[data-theme="1"] {
-            background: linear-gradient(45deg, #4A148C, #FF6F00, #00ACC1);
-        }
-        
-        .theme-btn[data-theme="2"] {
-            background: linear-gradient(45deg, #0066FF, #76FF03, #E91E63);
-        }
-        
-        .theme-btn[data-theme="3"] {
-            background: linear-gradient(45deg, #1A237E, #FFB300, #00BFA5);
-        }
         
         /* アニメーション用の追加スタイル */
         .split-text span {
@@ -733,13 +705,6 @@
     <!-- パーティクル背景 -->
     <canvas id="particles-canvas"></canvas>
     
-    <!-- テーマ切り替え -->
-    <div class="theme-switcher">
-        <div class="theme-btn active" data-theme="1" title="ダイナミック・グラデーション"></div>
-        <div class="theme-btn" data-theme="2" title="モダン・トライアド"></div>
-        <div class="theme-btn" data-theme="3" title="洗練されたビジネスカラー"></div>
-    </div>
-    
     <!-- メインコンテンツ -->
     <div class="content">
         <!-- ヒーローセクション -->
@@ -774,6 +739,7 @@
                             異業種の協創により、1+1が3にも10にもなる相乗効果を実現。
                         </p>
                     </div>
+                    </div>
                 </div>
                 
                 <div class="value-card" data-kanji="架">
@@ -783,6 +749,7 @@
                             人と人、ビジネスとビジネスの架け橋となり、
                             新たなコミュニティと価値創造の場を提供します。
                         </p>
+                    </div>
                     </div>
                 </div>
                 
@@ -794,6 +761,7 @@
                             スピード感を持って、未来への挑戦を支援します。
                         </p>
                     </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -803,8 +771,12 @@
             <h2 class="section-title">UPCOMING EVENTS</h2>
             <div class="events-grid">
                 <div class="event-card">
-                    <span class="event-date">2024年1月20日（土）</span>
-                    <h3 class="event-title">プログラミング体験ワークショップ</h3>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="プログラミング体験ワークショップ">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">2024年1月20日（土）</span>
+                        <h3 class="event-title">プログラミング体験ワークショップ</h3>
                     <div class="event-location">
                         <span>📍</span>
                         <span>3F SUNABACO NEYAGAWA</span>
@@ -821,110 +793,136 @@
                         <span class="event-tag">無料</span>
                         <span class="event-tag">要予約</span>
                     </div>
-                </div>
-                
-                <div class="event-card">
-                    <span class="event-date">2024年1月27日（土）</span>
-                    <h3 class="event-title">地産地消マルシェ</h3>
-                    <div class="event-location">
-                        <span>📍</span>
-                        <span>1F Cafe 6D</span>
-                    </div>
-                    <div class="event-time">
-                        <span>🕐</span>
-                        <span>10:00 - 16:00</span>
-                    </div>
-                    <p class="event-description">
-                        地元農家さんの新鮮な野菜や果物が大集合！生産者と直接お話しながら、こだわりの農産物をお買い求めいただけます。
-                    </p>
-                    <div class="event-tags">
-                        <span class="event-tag">ファミリー向け</span>
-                        <span class="event-tag">地産地消</span>
-                        <span class="event-tag">入場無料</span>
                     </div>
                 </div>
                 
                 <div class="event-card">
-                    <span class="event-date">2024年2月3日（土）</span>
-                    <h3 class="event-title">起業家交流会</h3>
-                    <div class="event-location">
-                        <span>📍</span>
-                        <span>2F レンタルスペース KAKERU</span>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="地産地消マルシェ">
                     </div>
-                    <div class="event-time">
-                        <span>🕐</span>
-                        <span>18:00 - 21:00</span>
-                    </div>
-                    <p class="event-description">
-                        寝屋川市で活躍する起業家・経営者が集まる交流会。新しいビジネスチャンスを見つけたい方、人脈を広げたい方におすすめです。
-                    </p>
-                    <div class="event-tags">
-                        <span class="event-tag">ネットワーキング</span>
-                        <span class="event-tag">ビジネス</span>
-                        <span class="event-tag">軽食付き</span>
-                    </div>
-                </div>
-                
-                <div class="event-card">
-                    <span class="event-date">2024年2月10日（土）</span>
-                    <h3 class="event-title">親子でプログラミング教室</h3>
-                    <div class="event-location">
-                        <span>📍</span>
-                        <span>3F SUNABACO NEYAGAWA</span>
-                    </div>
-                    <div class="event-time">
-                        <span>🕐</span>
-                        <span>10:00 - 12:00</span>
-                    </div>
-                    <p class="event-description">
-                        小学生とその保護者を対象にしたプログラミング教室。Scratchを使って、ゲーム作りに挑戦！親子で一緒に楽しく学べます。
-                    </p>
-                    <div class="event-tags">
-                        <span class="event-tag">親子参加</span>
-                        <span class="event-tag">小学生対象</span>
-                        <span class="event-tag">定員15組</span>
+                    <div class="event-content">
+                        <span class="event-date">2024年1月27日（土）</span>
+                        <h3 class="event-title">地産地消マルシェ</h3>
+                        <div class="event-location">
+                            <span>📍</span>
+                            <span>1F Cafe 6D</span>
+                        </div>
+                        <div class="event-time">
+                            <span>🕐</span>
+                            <span>10:00 - 16:00</span>
+                        </div>
+                        <p class="event-description">
+                            地元農家さんの新鮮な野菜や果物が大集合！生産者と直接お話しながら、こだわりの農産物をお買い求めいただけます。
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">ファミリー向け</span>
+                            <span class="event-tag">地産地消</span>
+                            <span class="event-tag">入場無料</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="event-card">
-                    <span class="event-date">2024年2月17日（土）</span>
-                    <h3 class="event-title">農家さんの料理教室</h3>
-                    <div class="event-location">
-                        <span>📍</span>
-                        <span>1F Cafe 6D</span>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="起業家交流会">
                     </div>
-                    <div class="event-time">
-                        <span>🕐</span>
-                        <span>15:00 - 17:00</span>
-                    </div>
-                    <p class="event-description">
-                        地元農家さんが講師となり、採れたて野菜を使った料理を伝授。野菜の選び方から調理のコツまで、プロから直接学べる貴重な機会です。
-                    </p>
-                    <div class="event-tags">
-                        <span class="event-tag">料理教室</span>
-                        <span class="event-tag">材料費込み</span>
-                        <span class="event-tag">試食あり</span>
+                    <div class="event-content">
+                        <span class="event-date">2024年2月3日（土）</span>
+                        <h3 class="event-title">起業家交流会</h3>
+                        <div class="event-location">
+                            <span>📍</span>
+                            <span>2F レンタルスペース KAKERU</span>
+                        </div>
+                        <div class="event-time">
+                            <span>🕐</span>
+                            <span>18:00 - 21:00</span>
+                        </div>
+                        <p class="event-description">
+                            寝屋川市で活躍する起業家・経営者が集まる交流会。新しいビジネスチャンスを見つけたい方、人脈を広げたい方におすすめです。
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">ネットワーキング</span>
+                            <span class="event-tag">ビジネス</span>
+                            <span class="event-tag">軽食付き</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="event-card">
-                    <span class="event-date">2024年2月24日（土）</span>
-                    <h3 class="event-title">AIビジネス活用セミナー</h3>
-                    <div class="event-location">
-                        <span>📍</span>
-                        <span>2F レンタルスペース KAKERU</span>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="親子でプログラミング教室">
                     </div>
-                    <div class="event-time">
-                        <span>🕐</span>
-                        <span>13:00 - 16:00</span>
+                    <div class="event-content">
+                        <span class="event-date">2024年2月10日（土）</span>
+                        <h3 class="event-title">親子でプログラミング教室</h3>
+                        <div class="event-location">
+                            <span>📍</span>
+                            <span>3F SUNABACO NEYAGAWA</span>
+                        </div>
+                        <div class="event-time">
+                            <span>🕐</span>
+                            <span>10:00 - 12:00</span>
+                        </div>
+                        <p class="event-description">
+                            小学生とその保護者を対象にしたプログラミング教室。Scratchを使って、ゲーム作りに挑戦！親子で一緒に楽しく学べます。
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">親子参加</span>
+                            <span class="event-tag">小学生対象</span>
+                            <span class="event-tag">定員15組</span>
+                        </div>
                     </div>
-                    <p class="event-description">
-                        ChatGPTなどのAIツールをビジネスに活用する方法を学ぶセミナー。実践的なワークショップで、すぐに使えるスキルを身につけます。
-                    </p>
-                    <div class="event-tags">
-                        <span class="event-tag">ビジネス</span>
-                        <span class="event-tag">AI活用</span>
-                        <span class="event-tag">実践型</span>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="農家さんの料理教室">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">2024年2月17日（土）</span>
+                        <h3 class="event-title">農家さんの料理教室</h3>
+                        <div class="event-location">
+                            <span>📍</span>
+                            <span>1F Cafe 6D</span>
+                        </div>
+                        <div class="event-time">
+                            <span>🕐</span>
+                            <span>15:00 - 17:00</span>
+                        </div>
+                        <p class="event-description">
+                            地元農家さんが講師となり、採れたて野菜を使った料理を伝授。野菜の選び方から調理のコツまで、プロから直接学べる貴重な機会です。
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">料理教室</span>
+                            <span class="event-tag">材料費込み</span>
+                            <span class="event-tag">試食あり</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="AIビジネス活用セミナー">
+                    </div>
+                    <div class="event-content">
+                        <span class="event-date">2024年2月24日（土）</span>
+                        <h3 class="event-title">AIビジネス活用セミナー</h3>
+                        <div class="event-location">
+                            <span>📍</span>
+                            <span>2F レンタルスペース KAKERU</span>
+                        </div>
+                        <div class="event-time">
+                            <span>🕐</span>
+                            <span>13:00 - 16:00</span>
+                        </div>
+                        <p class="event-description">
+                            ChatGPTなどのAIツールをビジネスに活用する方法を学ぶセミナー。実践的なワークショップで、すぐに使えるスキルを身につけます。
+                        </p>
+                        <div class="event-tags">
+                            <span class="event-tag">ビジネス</span>
+                            <span class="event-tag">AI活用</span>
+                            <span class="event-tag">実践型</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -968,6 +966,7 @@
                             <p>・季節の野菜プレート<br>・農家直送スムージー<br>・地元食材のスイーツ</p>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             
@@ -999,6 +998,7 @@
                             <p>・プロジェクター＆スクリーン<br>・音響設備<br>・高速Wi-Fi<br>・ケータリング対応</p>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             
@@ -1029,6 +1029,7 @@
                             <h4>🎯 特別プログラム</h4>
                             <p>・初心者向け基礎コース<br>・実践的プロジェクト開発<br>・キャリアサポート</p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -1144,39 +1145,6 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        });
-        
-        // フロア切り替えはGSAPセクションで処理
-        
-        // テーマ切り替え
-        const themeBtns = document.querySelectorAll('.theme-btn');
-        const root = document.documentElement;
-        
-        themeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const theme = btn.getAttribute('data-theme');
-                
-                themeBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                switch(theme) {
-                    case '1':
-                        root.style.setProperty('--primary', 'var(--theme1-primary)');
-                        root.style.setProperty('--secondary', 'var(--theme1-secondary)');
-                        root.style.setProperty('--accent', 'var(--theme1-accent)');
-                        break;
-                    case '2':
-                        root.style.setProperty('--primary', 'var(--theme2-primary)');
-                        root.style.setProperty('--secondary', 'var(--theme2-secondary)');
-                        root.style.setProperty('--accent', 'var(--theme2-accent)');
-                        break;
-                    case '3':
-                        root.style.setProperty('--primary', 'var(--theme3-primary)');
-                        root.style.setProperty('--secondary', 'var(--theme3-secondary)');
-                        root.style.setProperty('--accent', 'var(--theme3-accent)');
-                        break;
-                }
-            });
         });
         
         // GSAP アニメーション

@@ -2,25 +2,10 @@ import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    /* ダイナミック・グラデーション */
-    --theme1-primary: #4A148C;
-    --theme1-secondary: #FF6F00;
-    --theme1-accent: #00ACC1;
-    
     /* モダン・トライアド */
-    --theme2-primary: #0066FF;
-    --theme2-secondary: #76FF03;
-    --theme2-accent: #E91E63;
-    
-    /* 洗練されたビジネスカラー */
-    --theme3-primary: #1A237E;
-    --theme3-secondary: #FFB300;
-    --theme3-accent: #00BFA5;
-    
-    /* 現在のテーマ */
-    --primary: var(--theme1-primary);
-    --secondary: var(--theme1-secondary);
-    --accent: var(--theme1-accent);
+    --primary: #0066FF;
+    --secondary: #76FF03;
+    --accent: #E91E63;
     
     /* 共通カラー */
     --bg-dark: #0a0a0a;

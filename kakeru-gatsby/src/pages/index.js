@@ -9,7 +9,6 @@ import Tenants from "../components/Tenants"
 import Footer from "../components/Footer"
 import ParticleBackground from "../components/ParticleBackground"
 import CustomCursor from "../components/CustomCursor"
-import ThemeSwitcher from "../components/ThemeSwitcher"
 
 const MainContent = styled.div`
   position: relative;
@@ -36,7 +35,6 @@ const IndexPage = ({ data }) => {
     <Layout>
       <ParticleBackground />
       <CustomCursor />
-      <ThemeSwitcher />
       <MainContent>
         <Hero />
         <Values values={values} />
